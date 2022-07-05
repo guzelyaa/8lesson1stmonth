@@ -19,7 +19,7 @@ public class RPG_Game {
         Berserk berserk = new Berserk(300, 20, "Berserk");
         Medic assistant = new Medic(250, 10, "Assistant", 15);
 
-        Hero[] heroes = {warrior, medic, magic, berserk, assistant};
+        Hero[] heroes = {warrior, medic, magic, assistant, berserk};
 
         printStatistics(heroes, boss);
         while(!isGameFinished(heroes, boss)){
@@ -49,7 +49,7 @@ public class RPG_Game {
     }
 
     private static void heroesHits(Hero[] heroes, Boss boss){
-        for (int i = 0; i < heroes.length; i++) {
+        for (int i = 0; i < (heroes.length-1); i++) {
             if(heroes[i].getHealth() > 0 && boss.getHealth() > 0){
                 boss.setHealth(boss.getHealth() - heroes[i].getDamage());
             }
@@ -68,7 +68,7 @@ public class RPG_Game {
     }
 
     private static boolean isGameFinished(Hero[] heroes, Boss boss){
-        if(boss.getDamage() <= 0){
+        if(boss.getHealth() <= 0){
             System.out.println("Heroes won!");
             return true;
         }
